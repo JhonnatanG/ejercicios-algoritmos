@@ -20,15 +20,29 @@ const listaStrings = [
 
 const nuevaLista = listaStrings.map(text => text.toLocaleLowerCase());
 
-console.log(nuevaLista)
+let repe = [];
 
-const repe = [];
+
+console.log(nuevaLista)
 
 for (let i = 0; i < nuevaLista.length; i++) {
   repetidas(nuevaLista[i])
 }
 
-console.log(Object.values(repe))
+console.log("revision 1")
+console.table(repe);
+
+//Ordeno los valores de mayor a menor frecuencia
+repe.sort((a, b) => b.cantidad - a.cantidad);
+
+//Eliminamos valores repetidos 
+const eliminarDuplicadods = repe.filter((o, i , arry) =>
+  i === arry.findIndex((t) => t.palabra === o.palabra)
+);
+
+console.log("revision 2")
+console.table( repe)
+console.table(eliminarDuplicadods)
 
 function repetidas(text){
   let cont = 0
@@ -37,5 +51,6 @@ function repetidas(text){
       cont += 1;
     }   
   }
-  repe.push({palabra: text}, {cantidad: cont})
+  repe.push({palabra: text, cantidad: cont})
 }
+
